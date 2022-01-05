@@ -2,7 +2,7 @@
 
 Spin up IEx and run the following commands:
 
-```
+```ex
 # Load elixir files
 c "script.exs"
 c "process_helpers.exs"
