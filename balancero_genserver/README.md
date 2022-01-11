@@ -1,21 +1,18 @@
-# Balancero
+# Balancero Generic Server
 
-**TODO: Add description**
+```ex
+# Start Balancero process
+{:ok, b} = Balancero.start()
 
-## Installation
+# Inspect Balancero state
+b |> Balancero.inspect()
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `balancero` to your list of dependencies in `mix.exs`:
+# Spin up workers
+b |> Balancero.scale_up(3)
 
-```elixir
-def deps do
-  [
-    {:balancero, "~> 0.1.0"}
-  ]
-end
+# Terminate some
+b |> Balancero.scale_down(1)
+
+# And finally, schedule actual work on the worker
+b |> Balancero.schedule(fn -> IO.puts("Doing actual work from #{inspect(self())}") end)
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/balancero](https://hexdocs.pm/balancero).
-
