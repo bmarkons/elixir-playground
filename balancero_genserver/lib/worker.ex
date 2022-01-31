@@ -1,9 +1,9 @@
 defmodule Worker do
+  @moduledoc false
   require Logger
+  use GenericServer
 
-  def start do
-    GenericServer.start(__MODULE__, nil)
-  end
+  def start, do: start(nil)
 
   def handle_call(state, message) do
     {"Not implemented", nil}
@@ -17,6 +17,6 @@ defmodule Worker do
 
   def schedule(worker, work) do
     worker
-    |> GenericServer.cast({:work, work})
+    |> cast({:work, work})
   end
 end
